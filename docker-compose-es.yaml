@@ -1,0 +1,25 @@
+version: '3'
+services:
+  es1:
+    image: es:5.5.0.2
+    environment:
+      - TZ=Asia/Shanghai
+      - cluster.name=my-elasticsearch
+      - bootstrap.memory_lock=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+#      - xpack.security.enabled=false
+      - "discovery.zen.ping.unicast.hosts=192.168.200.211,192.168.200.212,192.168.200.213"
+      - transport.tcp.port=9300
+      - transport.publish_port=9300
+      - transport.publish_host=192.168.200.211
+    ulimits:
+      memlock:
+         soft: -1
+         hard: -1
+    volumes:
+      - /elasticsearch/data:/usr/share/elasticsearch/data
+      - /etc/localtime:/etc/localtime
+    ports:
+      - 9200:9200
+      - 9300:9300
+    network_mode: 'host' 
