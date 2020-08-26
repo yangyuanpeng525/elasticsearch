@@ -54,4 +54,28 @@ services:
 
 
 
+version : '3.7'
+networks:
+  hy-net:
+    external: true
+services:
+  elasticsearch:
+    image: registry.cn-hangzhou.aliyuncs.com/yangyuanpeng/elasticsearch:oss-6.8.2
+    volumes:
+      - /TRS/APP/mongo_es/esdata:/usr/share/elasticsearch/data
+#      - /TRS/APP/nongo_es/es_config/elasticsearch.yml
+    environment:
+      - http.host=0.0.0.0
+      - transport.host=localhost
+      - network.host=0.0.0.0
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+    ports :
+      - 9200:9200
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+
+
 
