@@ -60,7 +60,7 @@ networks:
     external: true
 services:
   elasticsearch:
-    image: registry.cn-hangzhou.aliyuncs.com/yangyuanpeng/elasticsearch:oss-6.8.2
+    image: docker.elastic.co/elasticsearch/elasticsearch-oss:6.8.2
     volumes:
       - /TRS/APP/mongo_es/esdata:/usr/share/elasticsearch/data
 #      - /TRS/APP/nongo_es/es_config/elasticsearch.yml
