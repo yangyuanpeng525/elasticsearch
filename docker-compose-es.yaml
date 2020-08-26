@@ -23,3 +23,35 @@ services:
       - 9200:9200
       - 9300:9300
     network_mode: 'host' 
+
+
+
+
+
+
+
+version : '3.7'
+networks:
+  hy-net:
+    external: true
+services:
+  www.hyes.com:
+        container_name : hyes
+        hostname: hyes
+        networks:
+          hy-net:
+        image:  registry.cn-hangzhou.aliyuncs.com/yangyuanpeng/elasticsearch:5.6.3-ik
+        environment:
+          - TZ=Asia/Shanghai
+        restart: always
+        volumes:
+          - /elasticsearch/data:/usr/share/elasticsearch/data   #es数据目录
+          - /elasticsearch/logs:/usr/share/elasticsearch/logs   #es日志目录
+          - /etc/localtime:/etc/localtime:ro
+        ports :
+          - 9200:9200
+          - 9300:9300
+
+
+
+
